@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorate="~{mainmenu}">
+
+<head>
+<title>Device Configurer</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+   
+   </head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+            
+                    <h1>Add your devices</h1>
+                    <form action="#" th:action="@{/deviceconfigurer/saveuserdevice}"
+						 th:object="${userdevice}" method="POST">
+			      
+			        <input type="hidden" th:field="*{userid}"
+					class="form-control mb-4 col-4" placeholder="Username"> 
+				
+	                 <select th:field="*{userdeviceid}" class="form-control mb-4 col-4">
+                        <option th:each="device: ${devices}"
+                                   th:value="${device.deviceName}"
+                           th:text="${device.deviceName}"/>
+                     </select>
+					
+			<button type="submit" class="btn btn-info col-2">Add Device</button>
+						
+		</form>
+		<br>
+		  <!-- messages based on events on Login page -->
+          <div th:if="${session.message}"
+          th:classappend="${session.message}" class="alert alert-info col-xs-offset-1 col-xs-10"
+          role="alert">
+          <p th:text="${session.message}"></p>
+          <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

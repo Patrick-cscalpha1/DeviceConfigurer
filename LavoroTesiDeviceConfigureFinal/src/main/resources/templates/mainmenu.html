@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Device Configurer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- reference CSS file -->
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+
+<span class="nome">Device Configurer  Username:</span>
+ <span sec:authentication="name" class="nome"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/deviceconfigurer/adddevices}">Add Devices</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/deviceconfigurer/mydevices}">My Devices</a>
+            </li>
+           	<!-- Add a logout button -->
+	<form th:action="@{/logout}" 
+			   method="POST">
+	
+		<input type="submit" value="Logout" />
+	
+	</form>	
+        </ul>
+    </div>
+</nav>
+
+<!--Content Section -->
+<section layout:fragment="content">
+     <div class="row">
+        <div class="col-md-12">
+      
+            <h1 class="text-muted">Welcome to your devices configurer Select action in the top menu bar</h1>
+        </div>
+    </div>
+</section>   
+
+
+<th:block layout:fragment="optional" />
+
+</body>
+</html>

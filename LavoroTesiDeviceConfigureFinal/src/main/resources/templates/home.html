@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns=th:"www.thymeleaf.org">
+<body>
+
+<h1>Hi spring fans</h1>
+
+	<!-- Add a logout button -->
+	<form th:action="@{/logout}" 
+			   method="POST">
+	
+		<input type="submit" value="Logout" />
+	
+	</form>	
+
+
+	<div>
+		User: <span sec:authentication="name"></span>
+		<br><br>
+		Role(s): <span sec:authentication="principal.authorities"></span>
+		<br><br>
+			<div sec:authorize="hasRole('ROLE_USER')">
+	
+		<!-- Add a link to point to /leaders ... this is for the managers -->
+		
+		<p>
+			<a th:href="@{/menu}">Menu</a>
+			(Only for Manager peeps)
+		</p>
+
+	</div>	
+	
+</div>
+</body>
+
+</html>

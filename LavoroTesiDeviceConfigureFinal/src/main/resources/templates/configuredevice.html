@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{mainmenu}">
+<head>
+<title>Device Configurer</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 th:text="${devicename} + ' Configuration'"/>
+                   
+                      <a th:href="@{/deviceconfigurer/grantpermission/{sourcedevice}(sourcedevice = ${devicename})}"
+							   class="btn btn-dark"	>Grant Permission</a>
+							   <br><br>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                        <th>Devices Granted Permission</th>
+                        <th>Data Exposed</th>
+                        <th>Action</th>
+                        </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each="tempDevices : ${myuserconfigdevices}">
+ 
+                            <td th:text="${tempDevices.targetDevice}"/>
+                            <td th:text="${tempDevices.sourceData}"/>
+                            <td>
+                            <a th:href="@{/deviceconfigurer/removeaccess/{deleteId}(deleteId = ${tempDevices.id})}"
+							   class="btn btn-danger"
+							   onclick="if (!(confirm('Are you sure you want to remove this device access permission ?'))) return false"
+								>Remove Permission</a> </td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                    <br><br>
+                    <a th:href="@{/deviceconfigurer/mydevices}">Back to my  Devices</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

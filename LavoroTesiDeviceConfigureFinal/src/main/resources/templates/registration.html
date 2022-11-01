@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>User Registration</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Device Configuration Registration Page</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Registration</p>
+	
+	    <!-- messages based on events on registration page -->
+          <div th:if="${session.message}"
+          th:classappend="${session.message}" class="alert alert-info col-xs-offset-1 col-xs-10"
+          role="alert">
+          <p th:text="${session.message}"></p>
+          <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+		<form action="#" th:action="@{/save}"
+						 th:object="${user}" method="POST">
+		
+			
+			
+			<input type="text" th:field="*{firstName}"
+					class="form-control mb-4 col-4" placeholder="First name">
+
+			<input type="text" th:field="*{lastName}"
+					class="form-control mb-4 col-4" placeholder="Last name">
+
+			<input type="text" th:field="*{password}"
+					class="form-control mb-4 col-4" placeholder="Password">
+			
+			<input type="text" th:field="*{username}"
+					class="form-control mb-4 col-4" placeholder="Username">
+				
+			<button type="submit" class="btn btn-info col-2">Register</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/showMyLoginPage}">Already Registered? Back to Login Page</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
